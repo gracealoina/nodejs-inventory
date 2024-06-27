@@ -10,6 +10,7 @@ const session       = require('express-session')
 // import file controller
 const c_beranda     = require('./controller/c_beranda')
 const c_auth        = require('./controller/c_auth')
+const c_dashboard   = require('./controller/c_dashboard')
 const cek_login     = c_auth.cek_login
 
 
@@ -45,10 +46,7 @@ app.get('/', c_beranda.index)
 app.get('/login', c_auth.form_login)
 app.post('/proses-login', c_auth.proses_login)
 
-app.get('/dashboard', cek_login, (req,res)=>{
-    res.send('<h1>Halaman Dashboard</h1>')
-})
-
+app.get('/dashboard', cek_login, c_dashboard.index) 
 
 
 // jalankan server

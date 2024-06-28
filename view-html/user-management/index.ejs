@@ -1,3 +1,12 @@
-<h1>Halaman User Management</h1>
+<h1> User Management</h1>
 <hr>
-<p>untuk kelola user</p>
+<a href="/user/tambah" class="btn btn-outline-primary rounded-circle mb-3">
+  <i class="fa-solid fa-plus"></i>
+</a>
+
+
+<ul class="list-group">
+    <% for (const i in users) {%>
+      <li class="list-group-items"><%= users[i].username %>(<%=users[i].nama_lengkap%>)</li>
+    <%}%>
+  </ul>

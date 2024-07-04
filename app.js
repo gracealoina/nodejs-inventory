@@ -59,6 +59,7 @@ app.post('/user/proses-simpan', cek_login, c_user.proses_simpan)
 app.post('/user/form-hapus/:id_karyawan', cek_login,c_user.form_hapus)
 
 app.get('/stok-masuk', cek_login, c_stok.form_stok_masuk)
+app.post('/stok-masuk/proses-simpan', cek_login, c_stok.proses_stok_masuk)
 
 // jalankan server
 app.listen(port, ()=>{

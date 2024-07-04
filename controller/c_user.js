@@ -1,6 +1,6 @@
 const moment    = require('moment')
 const m_user    = require("../model/m_user")
-const db        = require('../config/database').db
+
 
 moment.locale('id')
 

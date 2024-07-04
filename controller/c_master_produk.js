@@ -9,4 +9,33 @@ module.exports={
         }
         res.render('template/struktur',dataview)
     },
+
+    form_tambah: async function(req,res) {
+        let dataview = {
+            konten      : 'master-produk/form-tambah',
+            uri_segment : req.path.split('/'),
+            info_error  : null,
+            kategori: await m_produk.get_semua_kategori()
+        }
+        res.render('template/struktur', dataview)
+    },
+
+    proses_simpan: async function(req,res) {
+        try {
+            let insert      = await m_produk.tambah(req)
+            let isi_notif   = `berhasil menambah produk baru`
+            if (insert.affectedRows > 0) {
+                res.redirect(`/master-produk?note=sukses&pesan=${isi_notif}`)
+            }
+        } catch (error) {
+            let dataview = {
+                konten      : 'master-produk/form-tambah',
+                req         : req,
+                uri_segment : req.path.split('/'),
+                info_error  : error,
+            }
+            res.render('template/struktur', dataview)
+        }
+    },
+
 }

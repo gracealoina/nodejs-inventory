@@ -13,6 +13,7 @@ const c_auth            = require('./controller/c_auth')
 const c_dashboard       = require('./controller/c_dashboard')
 const c_user            = require('./controller/c_user')
 const c_master_produk   = require('./controller/c_master_produk')
+const c_stok            = require('./controller/c_stok')
 const cek_login         = c_auth.cek_login
 
 
@@ -49,9 +50,15 @@ app.post('/proses-login', c_auth.proses_login)
 
 app.get('/dashboard', cek_login, c_dashboard.index) 
 app.get('/master-produk', cek_login, c_master_produk.index)
+app.get('/master-produk/tambah', cek_login, c_master_produk.form_tambah)
+app.post('/master-produk/proses-simpan', cek_login, c_master_produk.proses_simpan)
+
 app.get('/user-management', cek_login, c_user.index)
 app.get('/user/tambah', cek_login, c_user.form_tambah)
 app.post('/user/proses-simpan', cek_login, c_user.proses_simpan)
+app.post('/user/form-hapus/:id_karyawan', cek_login,c_user.form_hapus)
+
+app.get('/stok-masuk', cek_login, c_stok.form_stok_masuk)
 
 // jalankan server
 app.listen(port, ()=>{

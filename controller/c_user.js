@@ -1,4 +1,8 @@
-const m_user = require("../model/m_user")
+const moment    = require('moment')
+const m_user    = require("../model/m_user")
+const db        = require('../config/database').db
+
+moment.locale('id')
 
 module.exports =
 {
@@ -41,6 +45,21 @@ module.exports =
             }
             res.render('template/struktur', dataview)
         }
+    },
+
+
+
+    form_hapus: async function (req,res){
+        let id_user = req.params.id_user
+        try{
+            let Aa = await m_user.hapus(id_user)
+            if(Aa.command == 'DELETE' && Aa.rowCount == 1){
+                res.redirect(`/user-management?note=sukses&pesan=${isi_notif}`)
+            }
+        }catch (error){
+            res.send(error)
+        }
+        
     },
 
 

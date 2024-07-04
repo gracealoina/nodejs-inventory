@@ -22,6 +22,25 @@ module.exports={
         })
     },
 
+    get_satu_user: function(){
+        let satu_sql = mysql.format(
+            `SELECT* FROM user;`,
+            [id_user]
+        )
+        return new Promise ((resolve,reject) =>{
+            db.query(satu_sql, function(errorSql, hasil){
+                if(errorSql){
+                    reject(errorSql)
+                }else{
+                 resolve(hasil)
+                }
+            })
+        })
+    },
+   
+
+    
+
     tambah: function(req) {
         let data = {
             // nama kolom di sql: req.body.name
@@ -43,5 +62,28 @@ module.exports={
                 }
             })
         })
-    }
+    },
+
+
+    hapus: function(id_user){
+    
+        let hasil = mysql.format(
+            `DELETE FROM user WHERE id = $;`,
+            [id_user]
+        )
+        return new Promise( (resolve,reject)=>{
+            db.query(hasil, function(errorSql, hasil) {
+                if (errorSql) {
+                    reject(errorSql)
+                } else {
+                    resolve(hasil)
+                }
+            })
+        })
+
+    },
+
+
+
+
 }

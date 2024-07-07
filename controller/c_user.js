@@ -47,13 +47,13 @@ module.exports =
         }
     },
 
-
-
     form_hapus: async function (req,res){
         let id_user = req.params.id_user
         try{
-            let Aa = await m_user.hapus(id_user)
-            if(Aa.command == 'DELETE' && Aa.rowCount == 1){
+            let remove = await m_user.hapus(id_user)
+             let isi_notif   = `berhasil menghapus user`
+            console.log(remove)
+            if(remove.affectedRows>0){
                 res.redirect(`/user-management?note=sukses&pesan=${isi_notif}`)
             }
         }catch (error){
@@ -61,6 +61,10 @@ module.exports =
         }
         
     },
+
+
+
+    
 
 
 }

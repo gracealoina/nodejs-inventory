@@ -65,10 +65,10 @@ module.exports={
     },
 
 
-    hapus: function(id_user){
+    hapus: async function(id_user){
     
-        let hasil = mysql.format(
-            `DELETE FROM user WHERE id = $;`,
+        let hasil = await mysql.format(
+            `DELETE FROM user WHERE id = ? ;`,
             [id_user]
         )
         return new Promise( (resolve,reject)=>{

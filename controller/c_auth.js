@@ -37,6 +37,7 @@ module.exports =
         
     },
 
+   
 
 
     proses_login: async function(req,res) {
@@ -57,6 +58,7 @@ module.exports =
         }
     },
 
+   
 
 
     cek_login: function(req,res,next) {
@@ -67,6 +69,23 @@ module.exports =
         }
     },
 
-
-
+    
+    form_logout: function(req, res) {
+        if (req.session.user) {
+          req.session.destroy();
+          res.send('<p>Anda telah logout. Silakan login kembali.</p><a href="/login">Login</a>');
+        } else {
+          res.redirect('/login'); // Redirect to login if already logged out
+        }
+      },
+     
+      cek_logout: function(req,res,next) {
+        if (req.session.user) {
+            next()
+        } else {
+            res.redirect(`/logout?msg=Anda telah logout, silakan login ulang!`)
+        }
+    },
+    
+    
 }

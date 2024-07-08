@@ -36,14 +36,14 @@
             <a class="nav-link d-flex align-items-center gap-2 <%= (uri_segment[1]=='stok-masuk') ? 'bg-primary text-white': ''%> "  href="/stok-masuk">
              
               <i class="fa-solid fa-fw fa-box-archive"></i>
-              Stok Masuk
+              Input Stok Masuk
             </a>
           </li>
           
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 <%= (uri_segment[1] == 'stok-keluar') ? 'bg-primary text-white' : '' %>" href="/stok-keluar">
                 <i class="fa-solid fa-fw fa-boxes-packing"></i>
-                Stok Keluar
+                InputStok Keluar
             </a>
         </li>
         
@@ -68,11 +68,10 @@
               </li>
           <li class="nav-item">
             
-            <a class="nav-link d-flex align-items-center gap-2" href="/auth/logout">
-              <form action="/auth/logout" method="post" style="margin:0; padding:0">
+            <a class="nav-link d-flex align-items-center gap-2"  method="get" href="/auth/logout">
               <i class="fa-solid fa-right-from-bracket"></i>
               Keluar
-            </form>
+            
             </a>
           </li>
         </ul>

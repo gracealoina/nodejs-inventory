@@ -7,6 +7,8 @@ const session       = require('express-session')
 
 
 
+
+
 // import file controller
 const c_beranda         = require('./controller/c_beranda')
 const c_auth            = require('./controller/c_auth')
@@ -17,7 +19,7 @@ const c_stok            = require('./controller/c_stok')
 const c_master_kategori = require('./controller/c_master_kategori')
 const c_laporan         = require('./controller/c_laporan')
 const cek_login         = c_auth.cek_login
-const cek_logout        = c_auth.cek_logout
+
 
 
 // settingan session untuk login
@@ -46,11 +48,17 @@ app.use(express.static('public'))
 
 
 // route
-//login-logout
+//login
 app.get('/', c_beranda.index)
 app.get('/login', c_auth.form_login)
 app.post('/proses-login', c_auth.proses_login)
-app.get('/auth/logout', c_auth.form_logout) //logout
+
+//logout
+app.get('/auth/logout', c_auth.form_logout) 
+
+
+//lupa password
+app.get('/forgot-password', c_auth.lupa_password)
 
 //dashboard
 app.get('/dashboard', cek_login, c_dashboard.index) 
@@ -59,6 +67,9 @@ app.get('/dashboard', cek_login, c_dashboard.index)
 app.get('/master-produk', cek_login, c_master_produk.index)
 app.get('/master-produk/tambah', cek_login, c_master_produk.form_tambah)
 app.post('/master-produk/proses-simpan', cek_login, c_master_produk.proses_simpan)
+
+//detail
+app.get('/master-produk/detail/:id_produk',cek_login, c_master_produk.detail)
 
 
 //master-kategori
@@ -71,12 +82,13 @@ app.post('/master-kategori/proses-simpan', cek_login, c_master_kategori.proses_s
 app.get('/user-management', cek_login, c_user.index)
 app.get('/user/tambah', cek_login, c_user.form_tambah)
 app.post('/user/proses-simpan', cek_login, c_user.proses_simpan)
-app.post('/user/form-hapus/:id_user', cek_login,c_user.form_hapus)
+app.post('/user/form-hapus/:id_user', cek_login,c_user.form_hapus) // hapus
 
 
 //stok masuk
 app.get('/stok-masuk', cek_login, c_stok.form_stok_masuk)
 app.post('/stok-masuk/proses-simpan', cek_login, c_stok.proses_stok_masuk)
+
 
 
 //stok keluar
@@ -86,6 +98,7 @@ app.post('/stok-keluar/proses-simpan', cek_login, c_stok.proses_stok_keluar)
 
 //laporan
 app.get('/laporan', cek_login, c_laporan.allstok)
+
 
 
 

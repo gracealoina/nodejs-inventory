@@ -41,6 +41,25 @@ module.exports={
         })
     },
 
+    get_satu_produk: function(id){ //ditangkap idnya masuk ke function
+        let sql = mysql.format(
+            'SELECT k.* FROM `master_produk` AS k WHERE k.id=?;',
+            [id]
+        )
+         
+        return new Promise ((resolve,reject) =>{
+            db.query(sql, function(errorSql, hasil){
+                if(errorSql){
+                    reject(errorSql)
+                }else{
+                 resolve(hasil)
+                }
+            })
+        })
+    },
+
+
+
     tambah: function(req) {
         let data = {
             // nama kolom di sql: req.body.name

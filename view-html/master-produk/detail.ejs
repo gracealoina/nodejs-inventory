@@ -1,0 +1,19 @@
+<%if (detail_produk.length>0) {%> 
+    <h1>Detail Produk</h1>
+    <hr><hr>
+    <ul>
+       
+        <li>Kode : <%= detail_produk[0].kode %></li>
+        <li>Nama Produk : <%= detail_produk[0].nama %></li>
+       <li>Deskripsi: <%= detail_produk[0].deskripsi %></li>
+       <li>Id kategori: <%= detail_produk[0].id_kategori %></li>
+       <li>Dibuat oleh: <%= detail_produk[0].dibuat_oleh %></li>
+       <li>Waktu input data: <%=detail_produk[0].dibuat_kapan %></li>
+       <li>Diperbaharui oleh : <%= detail_produk[0].diperbaharui_oleh %></li>
+       <li>Waktu pembaharuan data : <%= detail_produk[0].diperbaharui_kapan %></li>
+    </ul>
+    <%}else{%>
+        <h1> tidak ada data produk yang diminta</h1>
+        <%}%>
+    
+ 

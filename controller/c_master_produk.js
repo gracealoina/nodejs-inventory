@@ -38,4 +38,20 @@ module.exports={
         }
     },
 
+    detail: async (req,res)=> {
+    
+       let id= req.params.id_produk
+       try{
+        let dataview = {
+        detail_produk : await m_produk.get_satu_produk(id)    
+        }  
+        res.render('master-produk/detail', dataview)
+        
+    }catch (error){
+        res.send(error)
+    }
+    },
+      
+    
+
 }
